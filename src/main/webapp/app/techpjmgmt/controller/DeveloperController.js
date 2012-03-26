@@ -121,7 +121,7 @@ Ext.define('Techpjmgmt.controller.DeveloperController', {
                         {
                             xtype:'combo',
                             itemId:'searchtext',
-                            value:'search',
+                            value:'select',
                             name:'searchField',
                             forceSelection:false,
                             store:'ComboProjects',
