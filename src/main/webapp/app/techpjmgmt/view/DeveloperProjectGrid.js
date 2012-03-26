@@ -5,46 +5,6 @@ Ext.define('Techpjmgmt.view.DeveloperProjectGrid', {
     disableSelection:true,
     itemId:'developerprojectgrid',
 
-    dockedItems:[
-        {
-            xtype:'toolbar',
-            dock:'top',
-            items:[
-                {
-                    xtype:'button',
-                    itemId:'addbutton',
-                    text:'People',
-                    iconCls:'people16'
-                },
-
-                {
-                    xtype:'combo',
-                    itemId:'searchtext',
-                    value:'search',
-                    name:'searchField',
-                    forceSelection:false,
-                    store:'ComboProjects',
-                    multiSelect:false,
-                    autoSelect:false,
-                    queryMode:'local',
-                    valueField:'id',
-                    displayField:'name',
-                    listeners:{
-                        change:{
-                            fn:function (combo, newValue, oldValue, eOpts) {
-                                this.fireEvent("searchtxtchanged", combo, newValue, oldValue, eOpts);
-                            },
-                            buffer:500
-                        }
-                    }
-
-                }
-
-            ]
-
-        }
-    ],
-
     columns:[
         {
             xtype:'rownumberer',
@@ -72,7 +32,7 @@ Ext.define('Techpjmgmt.view.DeveloperProjectGrid', {
             flex:1,
             items:[
                 {
-                    icon:'images/user_group.png',
+                    icon:'images/delete.png',
                     tooltip:'Delete',
                     handler:function (grid, rowIndex, colIndex) {
                         this.fireEvent('deletepressed', grid, rowIndex, colIndex)
@@ -81,10 +41,6 @@ Ext.define('Techpjmgmt.view.DeveloperProjectGrid', {
             ]
         }
 
-    ],
-
-    onTextFieldChange:function () {
-        debugger;
-    }
+    ]
 
 });

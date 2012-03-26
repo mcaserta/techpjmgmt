@@ -1,5 +1,6 @@
 package com.nexse.techpjmgmt.util;
 
+import com.nexse.techpjmgmt.domain.Project;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -31,17 +32,25 @@ public class Startup implements ApplicationListener<ContextRefreshedEvent> {
 
         loaded=true;
 */
-/*
         if (!loaded) {
             Project project = new Project();
-            project.setName("PSG3");
-            project.setDescription("Piattaforma servizi e giochi3");
+            project.setName("PSG");
+            project.setDescription("Piattaforma servizi e giochi");
             project.setPjyear(2009);
             project.persist();
+            Project project1 = new Project();
+            project1.setName("PSG1");
+            project1.setDescription("Piattaforma servizi e giochi1");
+            project1.setPjyear(2009);
+            project1.persist();
+            Project project2 = new Project();
+            project2.setName("PSG2");
+            project2.setDescription("Piattaforma servizi e giochi2");
+            project2.setPjyear(2009);
+            project2.persist();
         }
 
         loaded=true;
-*/
 
     }
 }

@@ -10,28 +10,17 @@ Ext.define('Techpjmgmt.view.Viewport', {
     items:[
         {
             region:'center',
-            xtype:'panel',
-            itemId:'gridcontainer',
+            itemId:'developergrid',
             width:'100%',
             height:'70%',
-            border: false,
-            items:{
-                itemId:'developergrid',
-                xtype:'developergrid'
-            }
+            border:false,
+            xtype:'developergrid'
         },
         {
             itemId:'southcontainer',
             region:'south',
             height:'30%',
-            border: false
-/*
-            title:'Projects',
-            items:{
-                xtype:'developerprojectgrid'
-            }
-*/
-
+            border:false
         }
     ]
 });

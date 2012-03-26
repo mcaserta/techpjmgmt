@@ -1,12 +1,3 @@
-var rolesEditor = Ext.create('Ext.grid.CellEditor', { field:Ext.create('Ext.form.field.ComboBox', {
-    editable:false,
-    multiSelect:true,
-    valueField:'label',
-    displayField:'label',
-    store:'DeveloperRoles'
-})});
-
-
 Ext.define('Techpjmgmt.view.DeveloperGrid', {
     extend:'Ext.grid.Panel',
     alias:'widget.developergrid',
@@ -21,16 +12,9 @@ Ext.define('Techpjmgmt.view.DeveloperGrid', {
                 {
                     xtype:'button',
                     itemId:'addbutton',
-                    text:'People',
-                    iconCls:'people16'
-                },
-                {
-                    xtype:'textfield',
-                    itemId:'searchtext',
-                    value:'search',
-                    name:'searchField'
+                    text:'Add Developer',
+                    iconCls:'addBtn'
                 }
-
             ]
 
         }
@@ -67,7 +51,7 @@ Ext.define('Techpjmgmt.view.DeveloperGrid', {
             itemId:'projectsbutton',
             items:[
                 {
-                    icon:'images/user_group.png',
+                    icon:'images/show.png',
                     tooltip:'Projects',
                     handler:function (grid, rowIndex, colIndex) {
                         this.fireEvent('projectspressed', grid, rowIndex, colIndex)
@@ -81,7 +65,7 @@ Ext.define('Techpjmgmt.view.DeveloperGrid', {
             flex:1,
             items:[
                 {
-                    icon:'images/user_group.png',
+                    icon:'images/delete.png',
                     tooltip:'Delete',
                     handler:function (grid, rowIndex, colIndex) {
                         this.fireEvent('deletepressed', grid, rowIndex, colIndex)

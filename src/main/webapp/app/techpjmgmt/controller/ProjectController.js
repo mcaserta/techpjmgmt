@@ -30,6 +30,7 @@ Ext.define('Techpjmgmt.controller.ProjectController', {
                 deletepressed:this.onProjectDeletePressed
             }});
 
+        //combo di ricerca progetto
         this.control({
             '#developerprojectgrid #searchtext':{
                 searchtxtchanged:this.onSearchTxtChanged
@@ -38,7 +39,6 @@ Ext.define('Techpjmgmt.controller.ProjectController', {
         this.control({
             '#developerprojectgrid #searchtext':{
                 beforerender:function (combo) {
-                    debugger;
                     var currStore = this.getDeveloperProjectGrid().getStore();
                     this.filterComboStore(currStore, combo.getStore());
 
@@ -51,10 +51,16 @@ Ext.define('Techpjmgmt.controller.ProjectController', {
             }});
 
         this.initialData = [];
-        this.getComboProjectsStore().each(function(r){
-            this.initialData.push(r.copy());
-        },this);
-        debugger;
+        this.getComboProjectsStore().load(
+            {
+                scope:this,
+                callback:function (records) {
+                    records.forEach(function (r) {
+                            this.initialData.push(r.copy())
+                        },this
+                    )
+                }
+            });
 
     },
 
@@ -62,7 +68,7 @@ Ext.define('Techpjmgmt.controller.ProjectController', {
         var store = grid.getStore(),
             rec = store.getAt(rowIndex),
             currRec = this.getSouthContainer().currRec,
-            comboStore =this.getComboProjectsStore(),
+            comboStore = this.getComboProjectsStore(),
             proxy = store.getProxy(),
             me = this;
 
@@ -86,13 +92,12 @@ Ext.define('Techpjmgmt.controller.ProjectController', {
     },
 
     onProjectAdd:function (combo, newValue, oldValue, eOpts) {
-        debugger;
         var me = this,
             projectId = this.getSearchText().getSubmitValue(),
             currStore = this.getDeveloperProjectGrid().getStore(),
             projectStore = this.getProjectsStore(),
             proxy = projectStore.getProxy(),
-            comboStore =this.getComboProjectsStore(),
+            comboStore = this.getComboProjectsStore(),
             recFromCombo = comboStore.getById(projectId),
             currDeveloperRec = this.getSouthContainer().currRec,
             recToSave;
@@ -120,11 +125,16 @@ Ext.define('Techpjmgmt.controller.ProjectController', {
         }
     },
 
+    /**
+     * utilizzata per filtrare lo store del combo
+     * eliminando i progetti già associati
+     * @param currProjectStore
+     * @param comboStore
+     */
     filterComboStore:function (currProjectStore, comboStore) {
-        debugger;
         comboStore.removeAll();
         comboStore.add(this.initialData);
-            toRemove = [];
+        toRemove = [];
         comboStore.each(function (record) {
             if (currProjectStore.getById(record.get("id"))) {
                 toRemove.push(record);
@@ -132,7 +142,6 @@ Ext.define('Techpjmgmt.controller.ProjectController', {
             comboStore.remove(toRemove);
         });
         this.getSearchText().initValue();
-        debugger;
 
 
     },

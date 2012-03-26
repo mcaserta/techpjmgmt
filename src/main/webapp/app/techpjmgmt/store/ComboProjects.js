@@ -1,7 +1,7 @@
 Ext.define('Techpjmgmt.store.ComboProjects', {
     extend:'Ext.data.Store',
     model:'Techpjmgmt.model.Project',
-    autoLoad : true,
+    autoLoad : false,
 /*
     data : [
             {'id':'1','name':'psg','pjyear':'2009','description':'description'}

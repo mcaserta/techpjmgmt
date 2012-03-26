@@ -60,10 +60,10 @@ Ext.define('Techpjmgmt.controller.DeveloperController', {
             me.info(name, surname);
         });
         developersStore.on('write', function (store, operation, eOpts) {
-            debugger;
             var records = operation.records,
                 results = operation.getResultSet().records;
             if (operation.action === 'create') {
+                //setto l'id del nuovo record come lo ha generato il server
                 records[0].setId(results[0].get("id"));
             }
         });
@@ -90,7 +90,6 @@ Ext.define('Techpjmgmt.controller.DeveloperController', {
 
 
     onProjectsPressed:function (grid, rowIndex, colIndex) {
-        debugger;
         var store = this.getDevelopersStore(),
             rec = store.getAt(rowIndex),
             name = rec.get("name"),
@@ -115,8 +114,8 @@ Ext.define('Techpjmgmt.controller.DeveloperController', {
                         {
                             xtype:'button',
                             itemId:'addbutton',
-                            text:'People',
-                            iconCls:'people16'
+                            text:'add:',
+                            iconCls:'addBtn'
                         },
 
                         {
